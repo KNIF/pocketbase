@@ -18,7 +18,7 @@ services:
       - traefik_letsencrypt:/letsencrypt
 
   pocketbase:
-    image: ghcr.io/knif/pocketbase:latest
+    image: ${POCKETBASE_IMAGE:-ghcr.io/knif/pocketbase:latest}
     restart: unless-stopped
     volumes:
       - pocketbase_data:/pb/pb_data

@@ -55,6 +55,8 @@ To run on a VPS with the published image:
    ```env
    POCKETBASE_HOST=pb.example.com
    TRAEFIK_ACME_EMAIL=you@example.com
+   # optional override if using a custom image
+   # POCKETBASE_IMAGE=ghcr.io/knif/pocketbase:latest
    ```
 3. Start the stack:
    ```sh
