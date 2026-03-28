@@ -40,6 +40,30 @@ You could also check the recommendations in https://pocketbase.io/docs/how-to-us
 You could download the prebuilt executable for your platform from the [Releases page](https://github.com/pocketbase/pocketbase/releases).
 Once downloaded, extract the archive and run `./pocketbase serve` in the extracted directory.
 
+### Use with Docker (GHCR image + Traefik)
+
+This repository includes:
+
+- `Dockerfile` - builds a standalone PocketBase image.
+- `docker-compose.yml` - a Traefik + PocketBase stack for VPS usage.
+- `.github/workflows/docker-image.yml` - publishes the image to GHCR.
+
+To run on a VPS with the published image:
+
+1. Copy `docker-compose.yml` to your server.
+2. Create a `.env` file next to it:
+   ```env
+   POCKETBASE_HOST=pb.example.com
+   TRAEFIK_ACME_EMAIL=you@example.com
+   ```
+3. Start the stack:
+   ```sh
+   docker compose up -d
+   ```
+
+The compose file pulls `ghcr.io/knif/pocketbase:latest`.
+After the first workflow publish, set the GHCR package visibility to **Public** in GitHub package settings so VPS pulls do not require any login.
+
 The prebuilt executables are based on the [`examples/base/main.go` file](https://github.com/pocketbase/pocketbase/blob/master/examples/base/main.go) and comes with the JS VM plugin enabled by default which allows to extend PocketBase with JavaScript (_for more details please refer to [Extend with JavaScript](https://pocketbase.io/docs/js-overview/)_).
 
 ### Use as a Go framework/toolkit
