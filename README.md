@@ -48,6 +48,8 @@ This repository includes:
 - `docker-compose.yml` - a Traefik + PocketBase stack for VPS usage.
 - `.github/workflows/docker-image.yml` - publishes the image to GHCR.
 
+The Docker image intentionally builds `./examples/base` because it is the runnable `package main` entrypoint used for the prebuilt standalone binaries. `pocketbase.go` is the reusable library package (`package pocketbase`) and is not a standalone executable by itself.
+
 To run on a VPS with the published image:
 
 1. Copy `docker-compose.yml` to your server.
