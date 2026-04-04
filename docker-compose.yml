@@ -22,6 +22,8 @@ services:
     restart: unless-stopped
     volumes:
       - pocketbase_data:/pb/pb_data
+      - pocketbase_migrations:/pb/pb_migrations
+      - pocketbase_public:/pb/pb_public
     labels:
       - traefik.enable=true
       - traefik.http.routers.pocketbase.rule=Host(`${POCKETBASE_HOST}`)
@@ -32,4 +34,6 @@ services:
 
 volumes:
   pocketbase_data:
+  pocketbase_migrations:
+  pocketbase_public:
   traefik_letsencrypt:
