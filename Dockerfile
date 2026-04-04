@@ -11,6 +11,7 @@ RUN addgroup -S pocketbase && adduser -S -G pocketbase pocketbase
 
 WORKDIR /pb
 COPY --from=builder /out/pocketbase /usr/local/bin/pocketbase
+RUN mkdir -p /pb/pb_data && chown -R pocketbase:pocketbase /pb
 
 EXPOSE 8090
 VOLUME ["/pb/pb_data"]
