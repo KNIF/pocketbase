@@ -18,4 +18,4 @@ EXPOSE 8090
 VOLUME ["/pb/pb_data", "/pb/pb_migrations", "/pb/pb_public"]
 
 USER pocketbase
-ENTRYPOINT ["pocketbase", "serve", "--http=0.0.0.0:8090", "--dir=/pb/pb_data"]
+ENTRYPOINT ["pocketbase", "serve", "--http=0.0.0.0:8090", "--dir=/pb/pb_data", "--migrationsDir=/pb/pb_migrations", "--publicDir=/pb/pb_public"]
