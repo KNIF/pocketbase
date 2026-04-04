@@ -11,10 +11,11 @@ RUN addgroup -S pocketbase && adduser -S -G pocketbase pocketbase
 
 WORKDIR /pb
 COPY --from=builder /out/pocketbase /usr/local/bin/pocketbase
-RUN mkdir -p /pb/pb_data && chown -R pocketbase:pocketbase /pb/pb_data
+RUN mkdir -p /pb/pb_data /pb/pb_migrations /pb/pb_public \
+    && chown -R pocketbase:pocketbase /pb/pb_data /pb/pb_migrations /pb/pb_public
 
 EXPOSE 8090
-VOLUME ["/pb/pb_data"]
+VOLUME ["/pb/pb_data", "/pb/pb_migrations", "/pb/pb_public"]
 
 USER pocketbase
 ENTRYPOINT ["pocketbase", "serve", "--http=0.0.0.0:8090", "--dir=/pb/pb_data"]
